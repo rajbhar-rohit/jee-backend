@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Re:Zero</title>
+</head>
+<body>
+  <video id="video" controls width="640" height="360"></video>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const video = document.getElementById('video');
+    const videoSrc = 'https://d3sgzbosmwirao.cloudfront.net/video/fae846645ef5f411eedd1a277d18691910da77610f3c14c739907127f86dcc81/1/hls/h264_high.m3u8'; // Replace with your m3u8 URL
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+    } else {
+      alert('Your browser does not support HLS playback.');
+    }
+  </script>
+</body>
+</html>
